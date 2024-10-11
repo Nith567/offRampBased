@@ -16,7 +16,7 @@ const deployerPrivateKey =
 // If not set, it uses ours Etherscan default API key.
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 // forking rpc url
-const forkingURL = process.env.FORKING_URL || "";
+// const forkingURL = process.env.FORKING_URL || "";
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -33,7 +33,7 @@ const config: HardhatUserConfig = {
       },
     ],
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "baseSepolia",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -43,11 +43,15 @@ const config: HardhatUserConfig = {
   networks: {
     // View the networks that are pre-configured.
     // If the network you are looking for is not here you can add new network settings
-    hardhat: {
-      forking: {
-        url: forkingURL,
-        enabled: process.env.MAINNET_FORKING_ENABLED === "true",
-      },
+    // hardhat: {
+    //   forking: {
+    //     url: forkingURL,
+    //     enabled: process.env.MAINNET_FORKING_ENABLED === "true",
+    //   },
+    // },
+    baseSepolia: {
+      url: "https://sepolia.base.org",
+      accounts: [deployerPrivateKey],
     },
     mainnet: {
       url: `https://cloudflare-eth.com`,
@@ -101,10 +105,7 @@ const config: HardhatUserConfig = {
       url: "https://mainnet.base.org",
       accounts: [deployerPrivateKey],
     },
-    baseSepolia: {
-      url: "https://sepolia.base.org",
-      accounts: [deployerPrivateKey],
-    },
+
     scrollSepolia: {
       url: "https://sepolia-rpc.scroll.io",
       accounts: [deployerPrivateKey],
