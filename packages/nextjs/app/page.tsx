@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
@@ -32,7 +33,14 @@ const Home: NextPage = () => {
               <h2 className="card-title">offRampBased</h2>
               <p>here get it started</p>
               <div className="card-actions justify-end">
-                <div className="badge badge-outline">get Started</div>
+                <div className="badge badge-outline">
+                  <Link
+                    href="/signin"
+                    className="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition"
+                  >
+                    Login
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

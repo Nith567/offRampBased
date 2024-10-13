@@ -23,6 +23,10 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "LeaderBoard",
     href: "/leaderBoard",
   },
+  {
+    label: "Register",
+    href: "/register",
+  },
 ];
 
 export const HeaderMenuLinks = () => {
