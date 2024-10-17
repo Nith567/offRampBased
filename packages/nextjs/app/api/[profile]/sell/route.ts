@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import prismadb from "@/lib/db";
+import prismadb from "~~/lib/db";
 
 interface PageParams {
   params: { profile: string };
@@ -10,9 +10,19 @@ export async function POST(req: NextRequest, { params }: PageParams) {
     const body = await req.json();
     const { sellerId } = body;
     const { profile } = params;
+    const user: any = await prismadb.user.findUnique({
+      where: {
+        email: profile,
+      },
+      select: {
+        isSeller: false,
+        id: true,
+      },
+    });
+
     const createdRoom = await prismadb.sellerRoom.create({
       data: {
-        player1Id: profile,
+        player1Id: user?.id,
         player2Id: sellerId,
       },
     });

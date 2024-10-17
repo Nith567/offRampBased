@@ -5324,7 +5324,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.7":
+"axios@npm:^1.6.7, axios@npm:^1.7.7":
   version: 1.7.7
   resolution: "axios@npm:1.7.7"
   dependencies:
@@ -10651,7 +10651,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-auth@npm:^4.24.7":
+"next-auth@npm:^4.24.7, next-auth@npm:^4.24.8":
   version: 4.24.8
   resolution: "next-auth@npm:4.24.8"
   dependencies:
@@ -11784,7 +11784,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:^5.8.1":
+"prisma@npm:^5.20.0, prisma@npm:^5.8.1":
   version: 5.20.0
   resolution: "prisma@npm:5.20.0"
   dependencies:
@@ -12193,6 +12193,16 @@ __metadata:
     "@types/react":
       optional: true
   checksum: e7ad2383ce20d63cf28f3ed14e63f684e139301fc4a5c1573da330d4465b733e6084c33b2bfcaee448c9b1df0e37993a15d6cba8a1dd80fe631f803e48e9f798
+  languageName: node
+  linkType: hard
+
+"react-spinners@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "react-spinners@npm:0.14.1"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 42da89561e8ebcd2576f5ea96a6ac6a5288783d271769901edd00f03f66565ea1be79f5519766d6fe576a6f2c6a29bd2ae5bedaf9e90b1765adfd9ea7f30a78e
   languageName: node
   linkType: hard
 
@@ -12618,8 +12628,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    axios: ^1.7.7
     husky: ^8.0.1
     lint-staged: ^13.0.3
+    next-auth: ^4.24.8
+    prisma: ^5.20.0
+    react-spinners: ^0.14.1
   languageName: unknown
   linkType: soft
 

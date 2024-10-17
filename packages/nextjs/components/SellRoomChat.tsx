@@ -1,18 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FC } from "react";
 import { useRouter } from "next/navigation";
 import EmailBody from "./EmailBody";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { readContract, writeContract } from "@wagmi/core";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import { type Hex, formatEther, parseAbi, parseEther } from "viem";
-import { waitForTransactionReceipt } from "viem/actions";
 import { type BaseError, useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
-import { avalancheFuji, optimismSepolia } from "wagmi/chains";
 
 const SellRoomChat = ({ roomId, messages, tradeId, pushMessage, newMessage, setNewMessage }: any) => {
   const [userRole, setUserRole] = useState<boolean | null>(null); // true = seller, false = buyer

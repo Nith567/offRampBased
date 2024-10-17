@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import prismadb from "@/lib/db";
+import prismadb from "~~/lib/db";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   try {

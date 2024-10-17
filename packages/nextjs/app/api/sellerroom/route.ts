@@ -1,10 +1,8 @@
 import { NextRequest } from "next/server";
-import prismadb from "@/lib/db";
-import { pusherServer } from "@/lib/pusher";
+import prismadb from "~~/lib/db";
 
 export async function POST(req: NextRequest) {
   const { text, roomId, email } = await req.json();
-  pusherServer.trigger(roomId, "incoming-message", text);
   const user = await prismadb.user.findUnique({
     where: {
       email: email,
