@@ -3255,6 +3255,7 @@ __metadata:
     "@uniswap/v2-sdk": ^3.0.1
     abitype: 1.0.6
     autoprefixer: ^10.4.20
+    axios: ^1.7.7
     blo: ^1.0.1
     burner-connector: ^0.0.8
     daisyui: 4.12.10
@@ -3275,6 +3276,7 @@ __metadata:
     react-firebase-hooks: ^5.1.1
     react-hot-toast: ^2.4.0
     react-icons: ^4.3.1
+    react-spinners: ^0.14.1
     tailwindcss: ^3.4.11
     type-fest: ^4.6.0
     typescript: 5.5.3
@@ -10651,7 +10653,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-auth@npm:^4.24.7, next-auth@npm:^4.24.8":
+"next-auth@npm:^4.24.7":
   version: 4.24.8
   resolution: "next-auth@npm:4.24.8"
   dependencies:
@@ -11784,7 +11786,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:^5.20.0, prisma@npm:^5.8.1":
+"prisma@npm:^5.8.1":
   version: 5.20.0
   resolution: "prisma@npm:5.20.0"
   dependencies:
@@ -12628,12 +12630,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
-    axios: ^1.7.7
     husky: ^8.0.1
     lint-staged: ^13.0.3
-    next-auth: ^4.24.8
-    prisma: ^5.20.0
-    react-spinners: ^0.14.1
   languageName: unknown
   linkType: soft
 

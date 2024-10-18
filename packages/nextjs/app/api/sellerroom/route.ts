@@ -13,12 +13,12 @@ export async function POST(req: NextRequest) {
   });
 
   const sellerOrBuyer = user?.isSeller;
-
+  console.log("romid server", roomId);
   const message = await prismadb.sell.create({
     //@ts-ignore
     data: {
       text: text,
-      gameRoomId: roomId,
+      gameRoomId: roomId, //empty
       email: email,
     },
   });

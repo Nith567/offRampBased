@@ -15,7 +15,7 @@ interface PageParams {
 
 export default function page({ params }: PageParams) {
   const { room } = params;
-
+  console.log("roomid ", room);
   const session: any = useSession();
   const [newMessage, setNewMessage] = useState<string>("");
 
