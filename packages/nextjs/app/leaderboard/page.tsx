@@ -38,6 +38,7 @@ export default function page() {
   const [error, setError] = useState<string | null>(null);
 
   const handleProposal = async (userId: string) => {
+    console.log("sess", session?.data?.user?.email);
     try {
       const response = await axios.post(`/api/${session?.data?.user?.email}/sell`, {
         sellerId: userId,
@@ -45,9 +46,10 @@ export default function page() {
       console.log("res", response.data);
 
       const incrementResponse = await axios.post("http://localhost:4000/api/increment");
+      console.log("so response", incrementResponse);
       const tradeId = await incrementResponse.data.newRoomId;
       const roomId = response.data;
-      router.push(`/crypto/room/${roomId}/${tradeId}`);
+      router.push(`/chat/${roomId}/${tradeId}`);
     } catch (error) {
       console.error("error", error);
     }

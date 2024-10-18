@@ -10,6 +10,7 @@ export async function POST(req: NextRequest, { params }: PageParams) {
     const body = await req.json();
     const { sellerId } = body;
     const { profile } = params;
+    console.log("proifel , ", profile);
     const user: any = await prismadb.user.findUnique({
       where: {
         email: profile,
@@ -19,7 +20,7 @@ export async function POST(req: NextRequest, { params }: PageParams) {
         id: true,
       },
     });
-
+    console.log("fk ", user);
     const createdRoom = await prismadb.sellerRoom.create({
       data: {
         player1Id: user?.id,
