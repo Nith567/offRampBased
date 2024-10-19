@@ -15,10 +15,15 @@ interface PageParams {
 
 export default function page({ params }: PageParams) {
   const { room } = params;
-  console.log("roomid ", room);
-  const session: any = useSession();
+  const { data: session, status } = useSession();
+  const [email, setEmail] = useState<null | string>(null);
   const [newMessage, setNewMessage] = useState<string>("");
-
+  useEffect(() => {
+    console.log(status, session?.user?.email);
+    if (status === "authenticated" && session?.user?.email) {
+      setEmail(email);
+    }
+  }, [session, status]);
   const messagesRef = collection(db, "messages");
 
   const [messages, setMessages] = useState<any[]>([]);
@@ -30,6 +35,7 @@ export default function page({ params }: PageParams) {
       snapshot.forEach(doc => {
         messages.push({ ...doc.data(), id: doc.id });
       });
+      console.log(messages[0], "MEssage 0");
       setMessages(messages);
     });
 
@@ -37,16 +43,13 @@ export default function page({ params }: PageParams) {
   }, []);
 
   async function pushMessage(text: string) {
+    console.log(text, email);
     if (text === "") return;
-    let email = "";
-    while (session?.data?.user?.email === undefined) {
-      await new Promise(resolve => setTimeout(resolve, 200));
-    }
-    email = session?.data?.user?.email;
+    if (session?.user?.email === null) return;
     await addDoc(messagesRef, {
       text,
       createdAt: serverTimestamp(),
-      email,
+      email: session?.user?.email,
       roomId: room,
     });
 
@@ -54,6 +57,12 @@ export default function page({ params }: PageParams) {
   }
 
   return (
-    <SellRoomChat setNewMessage={setNewMessage} newMessage={newMessage} messages={messages} pushMessage={pushMessage} />
+    <SellRoomChat
+      roomId={room}
+      setNewMessage={setNewMessage}
+      newMessage={newMessage}
+      messages={messages}
+      pushMessage={pushMessage}
+    />
   );
 }

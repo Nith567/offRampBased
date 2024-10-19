@@ -2,11 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-:root,
-[data-theme] {
-  background: oklch(var(--b2));
-}
-
 body {
   min-height: 100vh;
 }
@@ -19,14 +14,26 @@ h4 {
   line-height: 1;
 }
 
-p {
-  margin: 1rem 0;
+:root {
+  --theme: #7283f0;
+  --light-theme: #808ff4;
 }
 
 .btn {
-  @apply shadow-md;
+  background-color: #09090b;
+  color: white;
+  padding: 3px 5px;
 }
 
-.btn.btn-ghost {
-  @apply shadow-none;
+.btn:hover {
+  background-color: #18181b;
+  color: white;
+}
+
+.btn-secondary:focus,
+.btn-sm:focus,
+.btn-sm:active,
+.btn-secondary:active {
+  outline: none;
+  border: none;
 }

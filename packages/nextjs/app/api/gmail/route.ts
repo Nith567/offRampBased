@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { authoptions } from "@/lib/auth";
 import { google } from "googleapis";
 import { getServerSession } from "next-auth";
+import { authoptions } from "~~/lib/auth";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const session = await getServerSession(authoptions);

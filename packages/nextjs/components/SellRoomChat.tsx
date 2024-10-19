@@ -13,9 +13,9 @@ const SellRoomChat = ({ roomId, messages, tradeId, pushMessage, newMessage, setN
   const [inputValue, setInputValue] = useState("");
   const [inputValue2, setInputValue2] = useState("");
   const [inputValue4, setInputValue4] = useState("");
-
+  const [email, setEmail] = useState<null | string>(null);
   const router = useRouter();
-  const session = useSession();
+  const { data: session, status } = useSession();
 
   const { address } = useAccount();
   const { isConnected } = useAccount();
@@ -23,19 +23,21 @@ const SellRoomChat = ({ roomId, messages, tradeId, pushMessage, newMessage, setN
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
 
   async function setRole() {
-    console.log(session?.data?.user?.email);
     const response = await axios.post("/api/sellerroom", {
       text: "",
       roomId,
-      email: session?.data?.user?.email,
+      email: session?.user?.email,
     });
     const data = await response.data;
     setUserRole(data.sellerOrBuyer); // Set user role based on response
   }
 
   useEffect(() => {
-    setRole();
-  }, []);
+    if (status === "authenticated" && session?.user?.email) {
+      setRole();
+      setEmail(session?.user?.email);
+    }
+  }, [session, status]);
 
   async function handleContract(address: any, abi: any, functionName: string, args: any[]): Promise<void> {
     try {
@@ -73,8 +75,6 @@ const SellRoomChat = ({ roomId, messages, tradeId, pushMessage, newMessage, setN
     }
     return "";
   };
-  console.log("mef", messages);
-  const email = session?.data?.user?.email;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -303,6 +303,8 @@ const SellRoomChat = ({ roomId, messages, tradeId, pushMessage, newMessage, setN
       >
         <div className="flex flex-col h-[80vh] p-4 space-y-2 overflow-y-auto">
           {messages.map((message: any) => {
+            if (!email) return null;
+
             const messageDate = formatDate(message.createdAt);
             const isNewDate = lastMessageDate !== messageDate;
             lastMessageDate = messageDate;
